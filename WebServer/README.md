@@ -8,7 +8,7 @@ At the most basic level, whenever a browser needs a file which is hosted on a we
 
 Basic representation of a client/server connection through HTTP
 
-![alt text](https://github.com/nnchien/backend-2018/WebServver/web-server.svg "Web Server")
+![](https://github.com/nnchien/backend-2018/blob/master/WebServer/web-server.svg "Web Server")
 
 To publish a website, you need either a static or a dynamic web server.
 
