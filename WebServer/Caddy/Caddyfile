@@ -1,0 +1,19 @@
+:8080 {
+	tls self_signed
+
+	proxy / 0.0.0.0:8080 {
+		transparent
+	}
+
+	proxy / http://0.0.0.0:8080 {
+		websocket
+	}
+
+	log access.log {
+		rotate_size 50                   
+		rotate_age  30 
+		rotate_keep 5
+	}
+	errors stdout
+	log stdout 
+}
