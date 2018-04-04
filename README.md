@@ -13,7 +13,7 @@ This repo is following [roadmap of backend 2018](https://camo.githubusercontent.
 ## TODO:
 
 - [ ] WebServer 
-    - [ ] Caddy
+    - [X] Caddy
 	- [ ] Apache
 	- [ ] Nginx
 - [ ] Restful APIs

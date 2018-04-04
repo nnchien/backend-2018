@@ -50,3 +50,5 @@ Expose a `https` static web page, open `websocket`, manage `logs`
 1. create an `index.html` file
 2. create `Caddyfile` for configuration
 3. run `caddy`
+
+There will be an investment on Caddy with more complex servers
