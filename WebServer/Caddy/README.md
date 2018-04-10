@@ -14,7 +14,7 @@ Available for Windows, Mac, Linux, BSD, Solaris, and [Android](https://github.co
 
 - [Features](#features)
 - [Build](#build)
-- [Quick Start](#quick-start)
+- [Example](#example)
 
 ## Features
 
@@ -43,12 +43,11 @@ Then make sure the `caddy` binary is in your PATH.
 To build for other platforms, use build.go with the `--goos` and `--goarch` flags.
 
 
-## Quick Start
+## Example
 
-Expose a `https` static web page, open `websocket`, manage `logs`
+1. use `Iris` build `server1` and serve a web page port `:9091` --> start
+2. use `Iris` build `server2` and serve an API `/user/{id}` with port `:9092`--> start
+3. config `Caddyfile` as the proxy to serve at port `:80` and `:8080`
+4. run `caddy` and check `http://localhost` and `http://localhost/user/{id}`
+(change `id` with a number)
 
-1. create an `index.html` file
-2. create `Caddyfile` for configuration
-3. run `caddy`
-
-There will be an investment on Caddy with more complex servers
