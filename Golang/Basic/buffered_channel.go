@@ -3,7 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -15,7 +17,7 @@ type Buffer struct {
 
 func (b Buffer) process() {
 	//fake a heavy work
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
 	fmt.Println("Proceeded", b)
 }
 
@@ -32,8 +34,12 @@ func worker() {
 		select {
 		case b = <-available:
 		}
-		b.get()
-		toController <- b
+		if b.number > 0 {
+			b.get()
+			toController <- b
+			return
+		}
+		fmt.Print("Push: ")
 	}
 }
 
@@ -41,7 +47,6 @@ func controller() {
 	for {
 		b := <-toController
 		b.process()
-		fmt.Print("Input: ")
 	}
 }
 
@@ -49,24 +54,34 @@ func main() {
 	go worker()
 	go controller()
 
-	fmt.Println("started the machine! Press push to push and exit to stop.")
-	fmt.Print("Input: ")
+	fmt.Println("started the machine! Input n (>0) to push and 0 to exit.")
+	fmt.Print("Push: ")
 	reader := bufio.NewReader(os.Stdin)
-	counter := 0
 	text := ""
 
 START:
 	for {
-		if strings.Compare(text, "exit") == 0 {
+		//detect if user want to exit
+		if strings.Compare(text, "0") == 0 {
 			fmt.Println("thanks for using, bye bye!")
 			os.Exit(0)
 		}
+
+		//read input from user
 		text, _ = reader.ReadString('\n')
-		//remove \n
 		text = strings.TrimRight(text, "\n")
-		if strings.Compare(text, "push") == 0 {
-			available <- Buffer{name: fmt.Sprintf("event %d", counter), number: counter}
-			counter++
+
+		n, err := strconv.Atoi(text)
+		if err != nil {
+			fmt.Print("Push: ")
+			continue START
+		}
+
+		for i := 0; i < n; i++ {
+			go func() {
+				fmt.Println("added ", i)
+				available <- Buffer{name: fmt.Sprintf("event %d", i), number: i}
+			}()
 		}
 		continue START
 	}
