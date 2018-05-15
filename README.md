@@ -12,8 +12,9 @@ This repo is following [roadmap of backend 2018](https://camo.githubusercontent.
 
 ## TODO:
 - [ ] Golang
-    - [ ] Basic
+    - [X] Basic
     - [ ] Advance 
+    - [ ] Gophercises
 - [ ] WebServer 
     - [X] Caddy
 	- [ ] Apache
