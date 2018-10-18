@@ -1,4 +1,4 @@
 # Worker serve on heavy task
 ## Situation
 ## Solution
-[](https://github.com/nnchien/backend-2018/blob/master/golang/solutions/workers-serve/workers-serve-heavy-task.jpeg)
+![Worker serves heavy task](https://preview.ibb.co/emChvf/Workers-Serve-Heavy-Task.jpg "Worker serves heavy task")
